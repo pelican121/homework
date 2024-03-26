@@ -20,7 +20,7 @@ try:
     # choice = Select(browser.find_element(By.TAG_NAME, "select"))
     # choice.select_by_value(sum)
     # browser.find_element(By.TAG_NAME, "button").click()
-    
+    # new line test
     # print(sum)
     
     browser.execute_script("document.title='Script executing';alert('Robots at work');")
