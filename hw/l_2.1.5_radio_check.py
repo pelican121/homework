@@ -17,7 +17,7 @@ try:
     time.sleep(2)
     target_field = browser.find_element(By.CSS_SELECTOR, "input#answer")
     target_field.send_keys(y)
-    time.sleep(2)
+    #time.sleep(2)
     target_checkbox = browser.find_element(By.CSS_SELECTOR, "#robotCheckbox")
     target_checkbox.click()
     time.sleep(2)
