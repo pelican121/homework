@@ -1,59 +1,48 @@
-from selenium import webdriver
-import time
 import pdb
-
+import time
+from selenium import webdriver
 from selenium.webdriver.common.by import By
 
 try:
-    # Создаем экземпляр драйвера для браузера Google Chrome
-    driver = webdriver.Chrome()
+    browser = webdriver.Chrome()
+    browser.get("https://eu.account.battle.net/login/ru/")
 
-    # Ждем 5 секунд
-    # time.sleep(5)
-    pdb.set_trace()
+    #поиск поля email по id 
+    email_field = browser.find_element(By.ID, 'accountName')
+    #email_field.send_keys("test@mail.ru")
 
-    # Открываем сайт https://eu.account.battle.net/login/ru/
-    driver.get("https://eu.account.battle.net/login/ru/")
+    # поиск поля ввода пароля по name
+    password_field = browser.find_element(By.NAME, "password")#.send_keys('qwer123')
+    #password_field.send_keys("1234")
 
-    # Ждем 5 секунд
-    # time.sleep(5)
-    pdb.set_trace()
+    # поиск "глаза" в поле пароля по class name
+    show_password_button = browser.find_element(By.CLASS_NAME, "show-password")
+    #show_password_button.click()
 
-    # Находим поле ввода для почты и вводим значение slargfuck@mail.ru
-    email_field = driver.find_element(By.ID, 'accountName')
-    email_field.send_keys("slargfuck@mail.ru")
+    # поиск всех кнопкок авторизации через другие платформы (google, ps и тд) по css
+    login_buttons = browser.find_elements(By.CSS_SELECTOR, "button[role='row']")
+    #for login_button in login_buttons:
 
-    # Ждем 5 секунд
-    # time.sleep(5)
-    pdb.set_trace()
+    # поиск кнопки "авторизоваться" по id
+    login_button = browser.find_element(By.ID, 'submit')
+    #login_button.click()
 
-    #Клик по кнопке прослушивания капчи
-    listen_capcha_button = driver.find_element(By.CSS_SELECTOR, "div#root path")
-    listen_capcha_button.click()
+    # поиск всех кнопкок авторизации через другие платформы (google, ps и тд) по css
+    login_buttons = browser.find_elements(By.CSS_SELECTOR, "button[role='row']")
+    #for login_button in login_buttons:
 
-    # Находим поле ввода для пароля и вводим значение 1234
-    password_field = driver.find_element(By.XPATH, "//div/input[@id='password']")
-    password_field.send_keys("1234")
+    # поиск блока регистрации (первый тэг li из двух) по tag name
+    browser.find_element(By.TAG_NAME, "li")
 
-    # Ждем 5 секунд
-    # time.sleep(5)
-    pdb.set_trace()
+    # поиск ссылки для перехода к регистрации по partial link text
+    browser.find_element(By.PARTIAL_LINK_TEXT, "Зарегистрируйте")#.click()
 
-    # Нажимаем на кнопку "Просмотр пароля"
-    show_password_button = driver.find_element(By.CLASS_NAME, "show-password")
-    show_password_button.click()
+    # поиск ссылки для восстановления доступа (Вы не можете войти?) по xpath
+    browser.find_element(By.XPATH, "//li/a[contains(text(), 'не можете')]")#.click()
+    
+    #time.sleep(5)
+    #pdb.set_trace()
 
-    # Ждем 5 секунд
-    # time.sleep(5)
-    pdb.set_trace()
-
-    # Нажимаем на кнопку "Авторизоваться"
-    login_button = driver.find_element(By.ID, 'submit')
-    login_button.click()
-
-    # Ждем 5 секунд
-    # time.sleep(5)
-    pdb.set_trace()
 finally:
-    # Закрываем браузер
-    driver.quit()
+    time.sleep(4)
+    browser.quit()
