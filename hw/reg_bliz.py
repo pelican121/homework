@@ -1,5 +1,5 @@
-#import pdb
-#import time
+import pdb
+import time
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 
@@ -27,6 +27,10 @@ try:
     login_button = browser.find_element(By.ID, 'submit')
     #login_button.click()
 
+    # поиск всех кнопкок авторизации через другие платформы (google, ps и тд) по css
+    login_buttons = browser.find_elements(By.CSS_SELECTOR, "button[role='row']")
+    #for login_button in login_buttons:
+
     # поиск блока регистрации (первый тэг li из двух) по tag name
     browser.find_element(By.TAG_NAME, "li")
 
@@ -40,5 +44,5 @@ try:
     #pdb.set_trace()
 
 finally:
-    #time.sleep(4)
+    time.sleep(4)
     browser.quit()
